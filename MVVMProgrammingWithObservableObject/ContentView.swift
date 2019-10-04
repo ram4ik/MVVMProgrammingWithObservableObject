@@ -12,6 +12,10 @@ let apiUrl = "https://api.letsbuildthatapp.com/static/courses.json"
 
 class CourcesViewModel: ObservableObject {
     @Published var message = "Message inside observable object"
+    
+    func changeMessage() {
+        self.message = "BLAH  BLAH"
+    }
 }
 
 struct ContentView: View {
@@ -26,7 +30,7 @@ struct ContentView: View {
                 .navigationBarItems(trailing: Button(action: {
                     print("Fetching json data")
                     
-                    self.courcesVM.message = "SOMETHING ELSE"
+                    self.courcesVM.changeMessage()
                     
                 }, label: {
                     Text("Fetch Cources")
