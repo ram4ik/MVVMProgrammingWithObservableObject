@@ -32,7 +32,12 @@ class CourcesViewModel: ObservableObject {
         guard let url = URL(string: apiUrl) else { return }
         URLSession.shared.dataTask(with: url) { (data , resp, err) in
             // make sure to check error / resp
-            self.courses = try! JSONDecoder().decode([Course].self, from: data!)
+            
+            DispatchQueue.main.async {
+                
+            
+                 self.courses = try! JSONDecoder().decode([Course].self, from: data!)
+            }
         }.resume()
     }
 }
