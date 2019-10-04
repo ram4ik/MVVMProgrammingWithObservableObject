@@ -10,14 +10,24 @@ import SwiftUI
 
 let apiUrl = "https://api.letsbuildthatapp.com/static/courses.json"
 
+class CourcesViewModel: ObservableObject {
+    @Published var message = "Message inside observable object"
+}
+
 struct ContentView: View {
+    
+    @ObservedObject var courcesVM = CourcesViewModel()
+    
     var body: some View {
         NavigationView {
             ScrollView {
-                Text("Hello everyone from Youtube")
+                Text(courcesVM.message)
             }.navigationBarTitle("Courses")
                 .navigationBarItems(trailing: Button(action: {
                     print("Fetching json data")
+                    
+                    self.courcesVM.message = "SOMETHING ELSE"
+                    
                 }, label: {
                     Text("Fetch Cources")
                 }))
